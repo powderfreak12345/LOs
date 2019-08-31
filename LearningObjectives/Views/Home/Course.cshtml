@@ -1,0 +1,124 @@
+﻿<!--
+  Author:    Jonathan Beutler
+  Partner:   None
+  Date:      September 4, 2019
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and Jonathan Beutler - This work may not be copied for use in Academic Coursework.
+
+  I, Jonathan Beutler, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     This is a web page for the course overview.  A professor uses this webpage to view existing Learning Objectives,
+     add new Evaluation Metrics, and attach examples of Student Work to demonstrate completeness.
+-->
+
+@{
+    ViewData["Title"] = "Course";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Overview</title>
+    <meta name="author" content="Jonathan Beutler" />
+    <meta name="description" content="TODO" />
+    <meta name="charset" content="UTF-8" />
+    <meta name="keywords" content="TODO" />
+    <link rel="stylesheet" type="text/css" href="course_style_sheet.css" />
+</head>
+<body>
+    <!--Header for the entire web page.  Contains Block U logo and School of Computing title-->
+    <div>
+        <img id="BlockU" src="BlockU_400px.png" />
+        <p id="BannerTitle">Learning Outcomes - University of Utah School of Computing</p>
+    </div>
+
+    <!--Menu bar for navigating to other pages.  Other pages include courses, the overview, and a reflecting link to this page.-->
+    <div class="Menu">
+        <a class="MenuItem" href="unimplemented_course.html">CS 3500</a>
+        <a class="MenuItem" href="unimplemented_course.html">CS 3505</a>
+        <a class="MenuItem" href="course.html">CS 4540</a>
+        <a class="MenuItem" href="overview.html">Department Overview</a>
+    </div>
+
+    <!--Main body of the web page-->
+
+    <h2>CS 4540 Learning Objectives</h2>
+
+    <!--The first learning objective-->
+    <div class="LearningObjective">
+        <h3>Objective 1: Provide Students a Basic Knowledge of HTML/CSS</h3>
+        <button>Add Metric</button>
+        <!--The first Evaluation Metric-->
+        <div class="EvaluationMetric">
+            <h4>Evaluation Metric 1: Demonstration of HTML and CSS</h4>
+            <!--Selection box that allow professors to update the status of an evaluation metric-->
+            <select>
+                <option>Not Started</option>
+                <option selected="selected">In Progress</option>
+                <option>Completed</option>
+            </select>
+            <!--Brief summary of the test/assignment-->
+            <p>Students demonstrate their skills by constructing two unique HTML pages.  Excellent pages should include concepts shown in lecture as well as some self-taught material.</p>
+            <!--This section is for uploading the test of the evaluation metric (assignment definitions, blank quizzes, etc.) -->
+            <div class="AssignmentDefinition">
+                <p>
+                    Assignment Definition:
+                    <a href="assignment_definition.txt">PS1 - Learning Outcomes - Static HTML/CSS</a>
+                    <button>Edit</button>
+                </p>
+            </div>
+            <!--This section is for uploading samples of student work-->
+            <div class="ExampleWork">
+                <p>Example(s) of Excellent Work:</p>
+                <a href="student_work.txt">An example of excellent work.</a>
+                <button>Remove</button>
+            </div>
+            <!--Buttons allowing the adding additional example work.-->
+            <div>
+                <button>Add</button>
+            </div>
+        </div>
+
+
+        <!--Second evaluation metric for the first LO-->
+        <div class="EvaluationMetric">
+            <h4>Evaluation Metric 2: Demonstration of CSS Theory</h4>
+            <!--Drop down menu for status update-->
+            <select>
+                <option selected="selected">Not Started</option>
+                <option>In Progress</option>
+                <option>Completed</option>
+            </select>
+            <!--Assignment description-->
+            <p>Students are quizzed on abstract CSS concepts such as syntax, selectors, and cascading rules.</p>
+            <div class="AssignmentDefinition">
+                <p>
+                    Assignment Definition:
+                    <a href="exam_definition.txt">Quiz 1 - CSS Theory</a>
+                    <button>Edit</button>
+                </p>
+            </div>
+            <!--This section is for uploading samples of student work-->
+            <div class="ExampleWork">
+                <p>Example(s) of Excellent Work:</p>
+                <a href="student_work.txt">An example of excellent work.</a>
+                <button>Remove</button>
+            </div>
+            <!--Buttons allowing the adding additional of example work.-->
+            <div>
+                <button>Add</button>
+            </div>
+        </div>
+    </div>
+    <div class="LearningObjective">
+        <h3>Objective 2: Students Can Develop Simple NetCore We Applications</h3>
+        <!--Incomplete Learning Objective.  User has options to add evaluation metrics.-->
+        <button>Add Metric</button>
+        <p>(No Evaluation Metrics)</p>
+    </div>
+</body>
+
+</html>
