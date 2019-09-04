@@ -26,14 +26,27 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">LearningObjectives</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                    <img src="~/images/BlockU_400px.png" style="width:40px;"/>
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Course">Course</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Overview">Department Overview</a></li>
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle" asp-area="" asp-controller="Home" asp-action="Index">Test Name 1</a>
+                        <div class="dropdown-menu">
+                            <a asp-area="" asp-controller="Home" asp-action="Index">Test Name 2</a>
+                        </div>
+                    </li>
+
+
+
+                    <li><a asp-area="" asp-controller="Home" asp-action="Course">CS 4540</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="UnimplementedPage">CS 3500</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="UnimplementedPage">CS 3505</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="LayoutExperiments">Layout Experiments</a></li>                    
                 </ul>
             </div>
         </div>

@@ -45,5 +45,24 @@ namespace LearningObjectives.Controllers
         {
             return View();
         }
+
+        //  This is presumably how the HomeController is supposed to be modified to support the Overview view.
+        public IActionResult Overview()
+        {
+            return View();
+        }
+
+        //  This is presumably how the HomeController is supposed to be modified to support the Unimplemented Page view.
+        public IActionResult UnimplementedPage()
+        {
+            return View();
+        }
+
+        
+        //  This is presumably how the HomeController is supposed to be modified to support the Layout Experiments view.
+        public IActionResult LayoutExperiments()
+        {
+            return View();
+        }
     }
 }

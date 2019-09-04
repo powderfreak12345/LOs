@@ -1,0 +1,65 @@
+﻿/*------------------------ ELEMENTS ------------------------*/
+
+/*Main body of the page*/
+body {
+    background-color: snow;
+}
+
+
+
+
+/*------------------------ CLASSES ------------------------*/
+
+/* The progress bar used to show how many student examples have been uploaded. */
+.examples-progress-bar {
+    width: 30%;
+}
+/* This is the table containing the file(s) for the assignment definition*/
+.file-upload-table {
+    background-color: beige;
+}
+
+/* The main title that displays at the top of each page, just below the navigation bar*/
+.main-title {
+    font-family: 'Times New Roman';
+    font-size: xx-large;
+    font-weight: bold;
+    border-bottom: double;
+    border-bottom-color: black;
+}
+
+/* The title of each learning objective. */
+.objective-title {
+    font-family: Arial;
+    font-size: x-large;
+    border-bottom: double;
+    border-bottom-color: lightgray;
+}
+
+/* A card used to contain all information about an evaluation metric. */
+/* NOTE:  I tried using the 'card' class built into Bootstrap, but Intellisense cannot detect the class 
+    and I'm not sure if it exists in my version of Bootstrap at all.
+*/
+.item-card {
+    border: solid;
+    border-width: medium;
+    border-color: lightseagreen;
+    background-color: aquamarine;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    border-radius: 30px;
+}
+/*------------------------ IDs ------------------------*/
+/*Block U image used in the top level header for each web page.  This must be manually sized otherwise it displays too large.*/
+#BlockU {
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+
+/*This is the top level header text accompanying the Block U logo*/
+#BannerTitle {
+    font-size: 50px;
+    padding-left: 120px;
+}

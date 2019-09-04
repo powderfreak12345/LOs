@@ -25,99 +25,187 @@
     <meta name="author" content="Jonathan Beutler" />
     <meta name="description" content="TODO" />
     <meta name="charset" content="UTF-8" />
-    <meta name="keywords" content="TODO" />
-    <link rel="stylesheet" type="text/css" href="course_style_sheet.css" />
+    <meta name="keywords" content="None" />
+    <link rel="stylesheet" type="text/css" href="~/css/Learning_Outcomes.css" />
 </head>
 <body>
-    <!--Header for the entire web page.  Contains Block U logo and School of Computing title-->
+    <h2 class="main-title">CS 4540 Learning Objectives</h2>
+
+    <!--Learning Objective 1-->
     <div>
-        <img id="BlockU" src="BlockU_400px.png" />
-        <p id="BannerTitle">Learning Outcomes - University of Utah School of Computing</p>
-    </div>
+        <!--Evaluation Metric 1, Learning Objective 1-->
+        <h3 class="objective-title">Objective 1: Provide Students a Basic Knowledge of HTML/CSS</h3>
+        <div class="item-card">
+            <h2>Evaluation Metric 1: Demonstration of HTML and CSS</h2>
+            <p>Description:  Students demonstrate their skills by constructing two unique HTML pages.  Excellent pages should include concepts shown in lecture as well as some self-taught material.</p>
+            <h3>Assignment Definition</h3>
+            <!--Table of Assignment Definition(s)-->
+            <table class="table table-bordered table-hover file-upload-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date Uploaded</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <!--Completed row.-->
+                        <td><a href="assignment_definition.txt">PS1.pdf</a></td>
+                        <td>August 21, 2019 18:52:01</td>
+                        <td><button>Delete</button></td>
+                    </tr>
+                    <tr>
+                        <!--Incomplete row.  Has option for uploading something.-->
+                        <td></td>
+                        <td></td>
+                        <td><button>Add</button></td>
+                    </tr>
+                </tbody>
+            </table>
 
-    <!--Menu bar for navigating to other pages.  Other pages include courses, the overview, and a reflecting link to this page.-->
-    <div class="Menu">
-        <a class="MenuItem" href="unimplemented_course.html">CS 3500</a>
-        <a class="MenuItem" href="unimplemented_course.html">CS 3505</a>
-        <a class="MenuItem" href="course.html">CS 4540</a>
-        <a class="MenuItem" href="overview.html">Department Overview</a>
-    </div>
-
-    <!--Main body of the web page-->
-
-    <h2>CS 4540 Learning Objectives</h2>
-
-    <!--The first learning objective-->
-    <div class="LearningObjective">
-        <h3>Objective 1: Provide Students a Basic Knowledge of HTML/CSS</h3>
-        <button>Add Metric</button>
-        <!--The first Evaluation Metric-->
-        <div class="EvaluationMetric">
-            <h4>Evaluation Metric 1: Demonstration of HTML and CSS</h4>
-            <!--Selection box that allow professors to update the status of an evaluation metric-->
-            <select>
-                <option>Not Started</option>
-                <option selected="selected">In Progress</option>
-                <option>Completed</option>
-            </select>
-            <!--Brief summary of the test/assignment-->
-            <p>Students demonstrate their skills by constructing two unique HTML pages.  Excellent pages should include concepts shown in lecture as well as some self-taught material.</p>
-            <!--This section is for uploading the test of the evaluation metric (assignment definitions, blank quizzes, etc.) -->
-            <div class="AssignmentDefinition">
-                <p>
-                    Assignment Definition:
-                    <a href="assignment_definition.txt">PS1 - Learning Outcomes - Static HTML/CSS</a>
-                    <button>Edit</button>
-                </p>
+            <h3>Examples of Student Work <small>(5 Required)</small></h3>
+            <nobr>Progress: </nobr>
+            <div class="progress examples-progress-bar">
+                <div class="progress-bar" style="width:60%;"></div>
             </div>
-            <!--This section is for uploading samples of student work-->
-            <div class="ExampleWork">
-                <p>Example(s) of Excellent Work:</p>
-                <a href="student_work.txt">An example of excellent work.</a>
-                <button>Remove</button>
-            </div>
-            <!--Buttons allowing the adding additional example work.-->
-            <div>
-                <button>Add</button>
-            </div>
+            <!--Table of student work examples-->
+            <table class="table table-bordered table-hover file-upload-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date Uploaded</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <!--Completed row-->
+                        <td><a href="assignment_definition.txt">u1010101_PS1.pdf</a></td>
+                        <td>August 30, 2019. 15:42:08</td>
+                        <td><button>Delete</button></td>
+                    </tr>
+                    <tr>
+                        <!--Completed row-->
+                        <td><a href="assignment_definition.txt">u1010102_PS1.pdf</a></td>
+                        <td>August 30, 2019. 15:45:13</td>
+                        <td><button>Delete</button></td>
+                    </tr>
+                    <tr>
+                        <!--Completed row-->
+                        <td><a href="assignment_definition.txt">u1010103_PS1.pdf</a></td>
+                        <td>August 30, 2019. 15:46:30</td>
+                        <td><button>Delete</button></td>
+                    </tr>
+                    <tr>
+                        <!--Incomplete row.  Gives option to upload something.-->
+                        <td></td>
+                        <td></td>
+                        <td><button>Upload</button></td>
+                    </tr>
+                    <tr>
+                        <!--Incomplete row.  Gives option to upload something.-->
+                        <td></td>
+                        <td></td>
+                        <td><button>Upload</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button>Edit</button>
+            <button>Delete</button>
+
         </div>
 
 
-        <!--Second evaluation metric for the first LO-->
-        <div class="EvaluationMetric">
-            <h4>Evaluation Metric 2: Demonstration of CSS Theory</h4>
-            <!--Drop down menu for status update-->
-            <select>
-                <option selected="selected">Not Started</option>
-                <option>In Progress</option>
-                <option>Completed</option>
-            </select>
-            <!--Assignment description-->
-            <p>Students are quizzed on abstract CSS concepts such as syntax, selectors, and cascading rules.</p>
-            <div class="AssignmentDefinition">
-                <p>
-                    Assignment Definition:
-                    <a href="exam_definition.txt">Quiz 1 - CSS Theory</a>
-                    <button>Edit</button>
-                </p>
+        <!--Evaluation Metric 2, Learning Objective 1-->
+        <div class="item-card">
+            <h2>Evaluation Metric 2: Demonstration of CSS Theory</h2>
+            <p>Description:  Students are quizzed on abstract CSS concepts such as syntax, selectors, and cascading rules.</p>
+            <h3>Assignment Definition</h3>
+            <!--Table of Assignment Definition(s)-->
+            <table class="table table-bordered table-hover file-upload-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date Uploaded</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <!--Completed row.-->
+                        <td><a href="assignment_definition.txt">Quiz1.pdf</a></td>
+                        <td>September 12, 2019 09:26:07</td>
+                        <td><button>Delete</button></td>
+                    </tr>
+                    <tr>
+                        <!--Incomplete row.  Has option for uploading something.-->
+                        <td></td>
+                        <td></td>
+                        <td><button>Add</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Examples of Student Work <small>(5 Required)</small></h3>
+            <nobr>Progress: </nobr>
+            <div class="progress examples-progress-bar">                
+                <div class="progress-bar" style="width:0%;"></div>
             </div>
-            <!--This section is for uploading samples of student work-->
-            <div class="ExampleWork">
-                <p>Example(s) of Excellent Work:</p>
-                <a href="student_work.txt">An example of excellent work.</a>
-                <button>Remove</button>
-            </div>
-            <!--Buttons allowing the adding additional of example work.-->
-            <div>
-                <button>Add</button>
-            </div>
+            <!--Table of student work examples-->
+            <table class="table table-bordered table-hover file-upload-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date Uploaded</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <!--Incomplete row.  Gives option to upload something.-->
+                        <td></td>
+                        <td></td>
+                        <td><button>Upload</button></td>
+                    </tr>
+                    <tr>
+                        <!--Incomplete row.  Gives option to upload something.-->
+                        <td></td>
+                        <td></td>
+                        <td><button>Upload</button></td>
+                    </tr>
+                    <tr>
+                        <!--Incomplete row.  Gives option to upload something.-->
+                        <td></td>
+                        <td></td>
+                        <td><button>Upload</button></td>
+                    </tr>
+                    <tr>
+                        <!--Incomplete row.  Gives option to upload something.-->
+                        <td></td>
+                        <td></td>
+                        <td><button>Upload</button></td>
+                    </tr>
+                    <tr>
+                        <!--Incomplete row.  Gives option to upload something.-->
+                        <td></td>
+                        <td></td>
+                        <td><button>Upload</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button>Edit</button>
+            <button>Delete</button>
         </div>
+
+        <button>Add Metric</button>     
     </div>
-    <div class="LearningObjective">
-        <h3>Objective 2: Students Can Develop Simple NetCore We Applications</h3>
+
+    <div>
+        <h3 class="objective-title">Objective 2: Students Can Develop Simple NetCore We Applications</h3>
         <!--Incomplete Learning Objective.  User has options to add evaluation metrics.-->
-        <button>Add Metric</button>
         <p>(No Evaluation Metrics)</p>
+        <button>Add Metric</button>
     </div>
 </body>
 
