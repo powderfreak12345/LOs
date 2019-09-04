@@ -26,11 +26,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                    <img src="~/images/BlockU_400px.png" style="width:40px;"/>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand" style="margin: auto;">
+                    <!--TODO: Did some sketchy aligning here to center the Block U.  I realize there is probably a better way of doing
+                    this than defining constants for the width and margin, but was unable to find anything on my own.-->
+                    <img src="~/images/BlockU_400px.png" style="width:50px; margin-top: -15px; display: block;" />
                 </a>
             </div>
             <div class="navbar-collapse collapse">
+                <!--The navbar links along the left side of the navbar-->
                 <ul class="nav navbar-nav">
                     <li><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Overview">Department Overview</a></li>
@@ -45,7 +48,33 @@
                         </div>
                     </li>
                     <li><a asp-area="" asp-controller="Home" asp-action="LayoutExperiments">Layout Experiments</a></li>
-                    <li class="navbar-right"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="UnimplementedPage">Logout?</a></li>
+                </ul>
+                <!--The single navbar link along the right side of the navbar-->
+                <ul class="nav navbar-nav" style="float: right;">
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" asp-area="" asp-controller="Home" asp-action="Index" style="background-color: black">
+                            <div class="container" style="width: 170px">
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <nobr>John Smith</nobr>
+                                        <nobr>Department Chair</nobr>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <img class="img-circle" src="~/images/220px-User_icon_2.svg.png" style="width: 25px; background-color: blue;" />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <!--<nobr>Department Chair</nobr>
+                            <img class="img-circle" src="~/images/220px-User_icon_2.svg.png" style="width: 25px; background-color: blue;" />-->
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="UnimplementedPage">User Preferences</a>
+                            <div class="nav-divider"></div>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="UnimplementedPage">Logout</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
