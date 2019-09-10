@@ -18,5 +18,52 @@
     ViewData["Title"] = "Home Page";
 }
 
-<h1>Home Page</h1>
-<p>No content here yet!</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Overview</title>
+    <meta name="author" content="Jonathan Beutler" />
+    <meta name="description" content="TODO" />
+    <meta name="charset" content="UTF-8" />
+    <meta name="keywords" content="TODO" />
+    <link rel="stylesheet" type="text/css" href="~/css/Learning_Outcomes.css" />
+</head>
+<body>
+    <h2>Department Overview (Department Chair Page)</h2>
+    <div>
+        <!--CS 4540 Course.  Contains a broad overview for the course-->
+        <div class="item-card">
+            <a href="~/CourseModels/Details?dept=School+of+Computing&courseNumber=4540&semester=Fall&year=2019">
+                <h2>CS 4540</h2>
+            </a>            
+            <p>Learning Objectives:</p>
+            <div class="LearningObjective">
+                <h4>Objective 1: Provide Students a Basic Knowledge of HTML/CSS</h4>
+                <p>Evaluation Metric 1: Demonstration of HTML and CSS (3/5 Student Work Examples)</p>  <!--In the future, this will be computed values, not constants-->
+                <p>Evaluation Metric 2: Demonstration of CSS Theory (/5 Student Work Examples)</p>
+            </div>
+            <div class="LearningObjective">
+                <h4>Objective 2: Students Can Develop Simple NetCore We Applications</h4>
+                <p>(No Evalutaion Metrics)</p>
+            </div>
+        </div>
+        <p></p>
+        <!--Currently, course info for CS 3500 and 3505 is unimplemented.  Their layout would be similar to that of CS 4540 though.-->
+        <div class="item-card">
+            <a href="~/CourseModels/Details?dept=School+of+Computing&courseNumber=3500&semester=Fall&year=2019">
+                <h2>CS 3500</h2>
+            </a>
+            <p>Not yet implemented</p>
+        </div>
+        <p></p>
+        <div class="item-card">
+            <a href="~/CourseModels/Details?dept=School+of+Computing&courseNumber=3505&semester=Fall&year=2019">
+                <h2>CS 3505</h2>
+            </a>
+            <p>Not yet implemented</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

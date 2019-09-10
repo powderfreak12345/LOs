@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LearningObjectives.Migrations
 {
     [DbContext(typeof(LearningOutcomeContext))]
-    [Migration("20190908071828_Seeding")]
-    partial class Seeding
+    [Migration("20190910232801_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
