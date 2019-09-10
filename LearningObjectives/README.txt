@@ -7,11 +7,20 @@ Copyright: CS 4540 and Jonathan Beutler - This work may not be copied for use in
 
 Comments to Evaluators:
 
+Repo:	   https://github.com/powderfreak12345/LOs
 
+For the course views, I was only able to create the simple html course page with basic info.
+I'm driving back from Alaska this week from Monday to Saturday, so there hasn't been enough 
+time to get a nicer Razor page working.  It would have been much more feasible if the required
+readings necessary to complete this assignment had been available at the time when the assignment
+was released. 
+
+Improvements: Relocate the department chair overview to the main home page.  Add databases and 
+seed them.
 
 
 Consulted Peers:
-None.  I'm still in Alaska and don't know anybody in the class.
+None.
 
 References:
 
