@@ -18,6 +18,13 @@ was released.
 Improvements: Relocate the department chair overview to the main home page.  Add databases and 
 seed them.
 
+TO ASK DURING TA HOURS:
+
+-How to properly link to the CourseModelsController in the navigation bar.  Currently, I'm setting
+   the asp-controller="CourseModels", but CourseModels is a folder, not a controller.  It seems like
+   there should be a better way to do this.
+   Is it this?  https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-2.2
+
 
 Consulted Peers:
 None.

@@ -1,4 +1,5 @@
 ﻿using EFGetStarted.AspNetCore.NewDb.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,20 +19,30 @@ namespace LearningObjectives.Data
                 return;   // DB has been seeded
             }
 
+
             // Seed some courses.  Include courses multiple semesters.  Include some identical courses that were taught in different semesters.
             // Note: Course descriptions sourced from UofU catalog.  See README.
+            
             var courses = new CourseModel[]
             {
-                new CourseModel{ID=1, Number=4540, Name="Web Software Architecture", Department="School of Computing", Year=2019, Semester="Fall", Description="Software architectures, programming models, and programming environments pertinent to developing web applications.  Topics include client-server model, multi-tier software architecture, client-side scripting (JavaScript), server-side programming (Servlets and JavaServer Pages), component reuse (JavaBeans), database connectivity (JDBC), and web servers."},
-                new CourseModel{ID=2, Number=3500, Name="Software Practice I", Department="School of Computing", Year=2019, Semester="Spring", Description="Practical exposure to the process of creating large software systems, including requirements specifications, design, implementation, testing, and maintenance. Emphasis on software process, software tools (debuggers, profilers, source code repositories, test harnesses), software engineering techniques (time management, code, and documentation standards, source code management, object-oriented analysis and design), and team development practice. Much of the work will be in groups and will involve modifying preexisting software systems."},
-                new CourseModel{ID=3, Number=3505, Name="Software Practice II", Department="School of Computing", Year=2019, Semester="Fall", Description="An in-depth study of traditional software development (using UML) from inception through implementation.  The entire class is team-based, and will include a project that uses an agile process."},
-                new CourseModel{ID=1, Number=4540, Name="Web Software Architecture", Department="School of Computing", Year=2020, Semester="Spring", Description="Software architectures, programming models, and programming environments pertinent to developing web applications.  Topics include client-server model, multi-tier software architecture, client-side scripting (JavaScript), server-side programming (Servlets and JavaServer Pages), component reuse (JavaBeans), database connectivity (JDBC), and web servers."},
+                new CourseModel{Number=4540, Name="Web Software Architecture", Department="School of Computing", Year=2019, Semester="Fall", Description="Software architectures, programming models, and programming environments pertinent to developing web applications.  Topics include client-server model, multi-tier software architecture, client-side scripting (JavaScript), server-side programming (Servlets and JavaServer Pages), component reuse (JavaBeans), database connectivity (JDBC), and web servers."},
+                new CourseModel{Number=3500, Name="Software Practice I", Department="School of Computing", Year=2019, Semester="Spring", Description="Practical exposure to the process of creating large software systems, including requirements specifications, design, implementation, testing, and maintenance. Emphasis on software process, software tools (debuggers, profilers, source code repositories, test harnesses), software engineering techniques (time management, code, and documentation standards, source code management, object-oriented analysis and design), and team development practice. Much of the work will be in groups and will involve modifying preexisting software systems."},
+                new CourseModel{Number=3505, Name="Software Practice II", Department="School of Computing", Year=2019, Semester="Fall", Description="An in-depth study of traditional software development (using UML) from inception through implementation.  The entire class is team-based, and will include a project that uses an agile process."},
+                new CourseModel{Number=4540, Name="Web Software Architecture", Department="School of Computing", Year=2020, Semester="Spring", Description="Software architectures, programming models, and programming environments pertinent to developing web applications.  Topics include client-server model, multi-tier software architecture, client-side scripting (JavaScript), server-side programming (Servlets and JavaServer Pages), component reuse (JavaBeans), database connectivity (JDBC), and web servers."},
             };
+
+
             foreach (CourseModel cm in courses)
             {
                 context.Courses.Add(cm);
             }
+
+            // TODO: Figure out how to turn of IDENTITY_INSERT so that the IDs can be set explicitly for seeding.
+            //       I tried the first answer (and variations thereof) from this stack post, but could not get it to work:  https://stackoverflow.com/questions/40896047/how-to-turn-on-identity-insert-in-net-core?rq=1
+            
+            // context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Courses ON;");
             context.SaveChanges();
+            // context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Courses OFF;");
 
             // Seed some learning outcomes.
             var learningOutcomes = new LearningOutcomeModel[]

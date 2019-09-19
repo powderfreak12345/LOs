@@ -36,16 +36,7 @@
                 <!--The navbar links along the left side of the navbar-->
                 <ul class="nav navbar-nav">
                     <li><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li class="dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" asp-area="" asp-controller="Home" asp-action="Index">Courses</a>
-                        <div class="dropdown-menu">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Course">CS 4540</a>
-                            <div class="nav-divider"></div>
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="UnimplementedPage">CS 3500</a>
-                            <div class="nav-divider"></div>
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="UnimplementedPage">CS 3505</a>
-                        </div>
-                    </li>
+                    <li><a class="nav-link" asp-area="" asp-controller="CourseModels" asp-action="Index">Courses</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="LayoutExperiments">Layout Experiments</a></li>
                 </ul>
                 <!--The single navbar link along the right side of the navbar-->
