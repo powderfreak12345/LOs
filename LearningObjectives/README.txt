@@ -13,7 +13,7 @@ For the course views, I was only able to create the simple html course page with
 I'm driving back from Alaska this week from Monday to Saturday, so there hasn't been enough 
 time to get a nicer Razor page working.  It would have been much more feasible if the required
 readings necessary to complete this assignment had been available at the time when the assignment
-was released. 
+was released.
 
 Improvements: Relocate the department chair overview to the main home page.  Add databases and 
 seed them.
@@ -26,3 +26,5 @@ References:
 
 1. Block U Logo - https://www.uredzone.com/storeimages/182-1465319-1.jpg
 2. User Image - https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png
+3. Course Descriptions - https://catalog.utah.edu/#/courses
+4. Contosa University Example - https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro?view=aspnetcore-2.2
