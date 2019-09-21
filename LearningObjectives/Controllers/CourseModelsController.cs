@@ -71,15 +71,15 @@ namespace LearningObjectives.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Number,Name,Description,Department,Year,Semester")] CourseModel courseModel)
+        public async Task<IActionResult> Create([Bind("ID,Number,Name,Description,Department,Year,Semester")] Course course)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(courseModel);
+                _context.Add(course);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(courseModel);
+            return View(course);
         }
 
         // GET: CourseModels/Edit/5
@@ -99,9 +99,9 @@ namespace LearningObjectives.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Number,Name,Description,Department,Year,Semester")] CourseModel courseModel)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Number,Name,Description,Department,Year,Semester")] Course course)
         {
-            if (id != courseModel.CourseModelID)
+            if (id != course.CourseID)
             {
                 return NotFound();
             }
@@ -110,12 +110,12 @@ namespace LearningObjectives.Controllers
             {
                 try
                 {
-                    _context.Update(courseModel);
+                    _context.Update(course);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CourseModelExists(courseModel.CourseModelID))
+                    if (!CourseModelExists(course.CourseID))
                     {
                         return NotFound();
                     }
@@ -126,7 +126,7 @@ namespace LearningObjectives.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(courseModel);
+            return View(course);
         }
 
         // GET: CourseModels/Delete/5
@@ -156,10 +156,10 @@ namespace LearningObjectives.Controllers
 
         private bool CourseModelExists(int id)
         {
-            return _context.Courses.Any(e => e.CourseModelID == id);
+            return _context.Courses.Any(e => e.CourseID == id);
         }
 
-        private async Task<CourseModel> RetrieveCourseModel(string dept, int? courseNumber, string semester, int? year, bool includeLearningOutcomes)
+        private async Task<Course> RetrieveCourseModel(string dept, int? courseNumber, string semester, int? year, bool includeLearningOutcomes)
         {
             if (dept == null || courseNumber == null || semester == null || year == null)
                 return null;

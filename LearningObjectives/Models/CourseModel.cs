@@ -8,11 +8,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EFGetStarted.AspNetCore.NewDb.Models
 {
-    public class CourseModel
+    public class Course
     {
         // The primary key for identifying each unique course.
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int CourseModelID { get; set; }
+        public int CourseID { get; set; }
 
         // The course number.  Ex.  3500, 3505, 4540
         public int Number { get; set; }
@@ -33,6 +33,6 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
         public string Semester { get; set; }
 
         // A course has a one-to-many relationship with LearningOutcomes
-        public virtual ICollection<LearningOutcomeModel> LearningOutcomes { get; set; }
+        public virtual ICollection<LearningOutcome> LearningOutcomes { get; set; }
     }
 }

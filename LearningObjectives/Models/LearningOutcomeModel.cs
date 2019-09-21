@@ -7,13 +7,13 @@ using System.ComponentModel.DataAnnotations;
 namespace EFGetStarted.AspNetCore.NewDb.Models
 {
     
-    public class LearningOutcomeModel
+    public class LearningOutcome
     {
         // The primary key
-        public int LearningOutcomeModelID { get; set; }
+        public int LearningOutcomeID { get; set; }
 
         // The foreign key to the course model
-        public int CourseModelID { get; set; }
+        public int CourseID { get; set; }
 
         // The LO's name
         public string Name { get; set; }
@@ -22,6 +22,6 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
         public string Description { get; set; }
         
         // The course that the LO belongs to
-        public CourseModel Course { get; set; }
+        public Course Course { get; set; }
     }
 }
