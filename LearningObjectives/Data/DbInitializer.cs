@@ -23,16 +23,16 @@ namespace LearningObjectives.Data
             // Seed some courses.  Include courses multiple semesters.  Include some identical courses that were taught in different semesters.
             // Note: Course descriptions sourced from UofU catalog.  See README.
 
-            var courses = new Course[]
+            var courses = new CourseModel[]
             {
-                new Course{CourseID=1, Number=4540, Name="Web Software Architecture", Department="School of Computing", Year=2019, Semester="Fall", Description="Software architectures, programming models, and programming environments pertinent to developing web applications.  Topics include client-server model, multi-tier software architecture, client-side scripting (JavaScript), server-side programming (Servlets and JavaServer Pages), component reuse (JavaBeans), database connectivity (JDBC), and web servers."},
-                new Course{CourseID=2, Number=3500, Name="Software Practice I", Department="School of Computing", Year=2019, Semester="Spring", Description="Practical exposure to the process of creating large software systems, including requirements specifications, design, implementation, testing, and maintenance. Emphasis on software process, software tools (debuggers, profilers, source code repositories, test harnesses), software engineering techniques (time management, code, and documentation standards, source code management, object-oriented analysis and design), and team development practice. Much of the work will be in groups and will involve modifying preexisting software systems."},
-                new Course{CourseID=3, Number=3505, Name="Software Practice II", Department="School of Computing", Year=2019, Semester="Fall", Description="An in-depth study of traditional software development (using UML) from inception through implementation.  The entire class is team-based, and will include a project that uses an agile process."},
-                new Course{CourseID=4, Number=4540, Name="Web Software Architecture", Department="School of Computing", Year=2020, Semester="Spring", Description="Software architectures, programming models, and programming environments pertinent to developing web applications.  Topics include client-server model, multi-tier software architecture, client-side scripting (JavaScript), server-side programming (Servlets and JavaServer Pages), component reuse (JavaBeans), database connectivity (JDBC), and web servers."},
+                new CourseModel{CourseModelID=1, Number=4540, Name="Web Software Architecture", Department="School of Computing", Year=2019, Semester="Fall", Description="Software architectures, programming models, and programming environments pertinent to developing web applications.  Topics include client-server model, multi-tier software architecture, client-side scripting (JavaScript), server-side programming (Servlets and JavaServer Pages), component reuse (JavaBeans), database connectivity (JDBC), and web servers."},
+                new CourseModel{CourseModelID=2, Number=3500, Name="Software Practice I", Department="School of Computing", Year=2019, Semester="Spring", Description="Practical exposure to the process of creating large software systems, including requirements specifications, design, implementation, testing, and maintenance. Emphasis on software process, software tools (debuggers, profilers, source code repositories, test harnesses), software engineering techniques (time management, code, and documentation standards, source code management, object-oriented analysis and design), and team development practice. Much of the work will be in groups and will involve modifying preexisting software systems."},
+                new CourseModel{CourseModelID=3, Number=3505, Name="Software Practice II", Department="School of Computing", Year=2019, Semester="Fall", Description="An in-depth study of traditional software development (using UML) from inception through implementation.  The entire class is team-based, and will include a project that uses an agile process."},
+                new CourseModel{CourseModelID=4, Number=4540, Name="Web Software Architecture", Department="School of Computing", Year=2020, Semester="Spring", Description="Software architectures, programming models, and programming environments pertinent to developing web applications.  Topics include client-server model, multi-tier software architecture, client-side scripting (JavaScript), server-side programming (Servlets and JavaServer Pages), component reuse (JavaBeans), database connectivity (JDBC), and web servers."},
             };
 
 
-            foreach (Course cm in courses)
+            foreach (CourseModel cm in courses)
             {
                 context.Courses.Add(cm);
             }
@@ -45,15 +45,15 @@ namespace LearningObjectives.Data
             // context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Courses OFF;");
 
             // Seed some learning outcomes.
-            var learningOutcomes = new LearningOutcome[]
+            var learningOutcomes = new LearningOutcomeModel[]
             {
-                new LearningOutcome{CourseID=1, Name="Basic Knowledge of HTML/CSS", Description="Students can create basic HTML pages with some CSS styling.  The use of additional tools (i.e. Bootstrap) is not required for this Learning Outcome."},
-                new LearningOutcome{CourseID=1, Name="Bootstrap Introduction", Description="Students can supplement HTML pages with Bootstrap components to more quickly design custom pages."},
-                new LearningOutcome{CourseID=2, Name="Introdution to C#", Description="Students understand the basics of C#, such as types, if statements, and try-catch blocks.  Most of these concepts will have already been covered in previous courses that used a Java developing environment."},
-                new LearningOutcome{CourseID=2, Name="Actions, Functions, and Delegates", Description="Students understand Actions, Functions and Delegates.  They can readily provide examples of when each should be used."},
-                new LearningOutcome{CourseID=3, Name="Introduction to C++", Description="Students understand the basics of C++.  This includes types, headr files, and #include statements."}
+                new LearningOutcomeModel{CourseModelID=1, Name="Basic Knowledge of HTML/CSS", Description="Students can create basic HTML pages with some CSS styling.  The use of additional tools (i.e. Bootstrap) is not required for this Learning Outcome."},
+                new LearningOutcomeModel{CourseModelID=1, Name="Bootstrap Introduction", Description="Students can supplement HTML pages with Bootstrap components to more quickly design custom pages."},
+                new LearningOutcomeModel{CourseModelID=2, Name="Introdution to C#", Description="Students understand the basics of C#, such as types, if statements, and try-catch blocks.  Most of these concepts will have already been covered in previous courses that used a Java developing environment."},
+                new LearningOutcomeModel{CourseModelID=2, Name="Actions, Functions, and Delegates", Description="Students understand Actions, Functions and Delegates.  They can readily provide examples of when each should be used."},
+                new LearningOutcomeModel{CourseModelID=3, Name="Introduction to C++", Description="Students understand the basics of C++.  This includes types, headr files, and #include statements."}
             };
-            foreach (LearningOutcome lom in learningOutcomes)
+            foreach (LearningOutcomeModel lom in learningOutcomes)
             {
                 context.LearningOutcomes.Add(lom);
             }

@@ -1,4 +1,4 @@
-﻿@model EFGetStarted.AspNetCore.NewDb.Models.Course
+﻿@model EFGetStarted.AspNetCore.NewDb.Models.CourseModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -50,7 +50,7 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="CourseID" />
+        <input type="hidden" asp-for="CourseModelID" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-action="Index">Back to List</a>
     </form>
