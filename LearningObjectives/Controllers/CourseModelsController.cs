@@ -49,7 +49,7 @@ namespace LearningObjectives.Controllers
         public async Task<IActionResult> Details(string dept, int courseNumber, string semester, int year)
         {
             // Try to retrieve the course from database.  Sanitize inputs.
-            var courseModel = await RetrieveCourseModel(dept, courseNumber, semester, year);
+            var courseModel = await RetrieveCourseModel(dept, courseNumber, semester, year, true);
 
             if (courseModel == null)
             {
@@ -86,7 +86,7 @@ namespace LearningObjectives.Controllers
         public async Task<IActionResult> Edit(string dept, int courseNumber, string semester, int year)
         {
             // Try to retrieve the course from database.  Sanitize inputs.
-            var courseModel = await RetrieveCourseModel(dept, courseNumber, semester, year);
+            var courseModel = await RetrieveCourseModel(dept, courseNumber, semester, year, false);
             if (courseModel == null)
             {
                 return NotFound();
@@ -101,7 +101,7 @@ namespace LearningObjectives.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Number,Name,Description,Department,Year,Semester")] CourseModel courseModel)
         {
-            if (id != courseModel.ID)
+            if (id != courseModel.CourseModelID)
             {
                 return NotFound();
             }
@@ -115,7 +115,7 @@ namespace LearningObjectives.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CourseModelExists(courseModel.ID))
+                    if (!CourseModelExists(courseModel.CourseModelID))
                     {
                         return NotFound();
                     }
@@ -133,7 +133,7 @@ namespace LearningObjectives.Controllers
         public async Task<IActionResult> Delete(string dept, int courseNumber, string semester, int year)
         {
             // Try to retrieve the course from database.  Sanitize inputs.
-            var courseModel = await RetrieveCourseModel(dept, courseNumber, semester, year);
+            var courseModel = await RetrieveCourseModel(dept, courseNumber, semester, year, false);
 
             if (courseModel == null)
             {
@@ -156,21 +156,23 @@ namespace LearningObjectives.Controllers
 
         private bool CourseModelExists(int id)
         {
-            return _context.Courses.Any(e => e.ID == id);
+            return _context.Courses.Any(e => e.CourseModelID == id);
         }
 
-        private async Task<CourseModel> RetrieveCourseModel(string dept, int? courseNumber, string semester, int? year)
+        private async Task<CourseModel> RetrieveCourseModel(string dept, int? courseNumber, string semester, int? year, bool includeLearningOutcomes)
         {
             if (dept == null || courseNumber == null || semester == null || year == null)
                 return null;
             
             // Try to retrieve the course from database.  Sanitize inputs.
-            var course = await _context.Courses.FromSql("SELECT * FROM Courses" +
-                                                        " WHERE Department={0}" +
-                                                        " AND Number={1}" +
-                                                        " AND Semester={2}" +
-                                                        " AND Year={3}",
-                                                        dept, courseNumber, semester, year).FirstOrDefaultAsync();
+            var course = await _context.Courses
+                .FromSql("SELECT * FROM Courses WHERE Department={0} AND Number={1} AND Semester={2} AND Year={3}",
+                dept, courseNumber, semester, year).FirstOrDefaultAsync();
+
+            if (includeLearningOutcomes)
+            {
+                _context.Entry(course).Collection(c => c.LearningOutcomes).Load();
+            }
 
             return course;
         }

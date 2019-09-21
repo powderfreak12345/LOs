@@ -4,11 +4,9 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.Number) - @Html.DisplayFor(model => model.Name)</h2>
 
-<div>
-    <h4>CourseModel</h4>
-    <hr />
+<div class="bg-info">
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Number)
@@ -49,6 +47,20 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <!--The generated code goes here.-->
+    <h3>Learning Objectives:</h3>
+    <dl class="dl-horizontal">
+        @foreach (var item in Model.LearningOutcomes)
+        {
+            <dt>
+                @Html.DisplayNameFor(modelitem => item.Description)
+            </dt>
+            <dd>
+                @Html.DisplayFor(modelItem => item.Description)
+            </dd>
+
+        }
+    </dl>
+
+
 </div>

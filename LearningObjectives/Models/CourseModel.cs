@@ -4,13 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using LearningObjectives.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EFGetStarted.AspNetCore.NewDb.Models
 {
     public class CourseModel
     {
         // The primary key for identifying each unique course.
-        public int ID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int CourseModelID { get; set; }
 
         // The course number.  Ex.  3500, 3505, 4540
         public int Number { get; set; }
