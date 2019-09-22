@@ -49,7 +49,7 @@ namespace LearningObjectives.Controllers
         public async Task<IActionResult> Details(string dept, int courseNumber, string semester, int year)
         {
             // Try to retrieve the course from database.  Sanitize inputs.
-            var courseModel = await RetrieveCourseModel(dept, courseNumber, semester, year, true);
+            var courseModel = await RetrieveCourseModel(dept, courseNumber, semester, year);
 
             if (courseModel == null)
             {
@@ -86,7 +86,7 @@ namespace LearningObjectives.Controllers
         public async Task<IActionResult> Edit(string dept, int courseNumber, string semester, int year)
         {
             // Try to retrieve the course from database.  Sanitize inputs.
-            var courseModel = await RetrieveCourseModel(dept, courseNumber, semester, year, false);
+            var courseModel = await RetrieveCourseModel(dept, courseNumber, semester, year);
             if (courseModel == null)
             {
                 return NotFound();
@@ -133,7 +133,7 @@ namespace LearningObjectives.Controllers
         public async Task<IActionResult> Delete(string dept, int courseNumber, string semester, int year)
         {
             // Try to retrieve the course from database.  Sanitize inputs.
-            var courseModel = await RetrieveCourseModel(dept, courseNumber, semester, year, false);
+            var courseModel = await RetrieveCourseModel(dept, courseNumber, semester, year);
 
             if (courseModel == null)
             {
@@ -159,7 +159,7 @@ namespace LearningObjectives.Controllers
             return _context.Courses.Any(e => e.CourseModelID == id);
         }
 
-        private async Task<CourseModel> RetrieveCourseModel(string dept, int? courseNumber, string semester, int? year, bool includeLearningOutcomes)
+        private async Task<CourseModel> RetrieveCourseModel(string dept, int? courseNumber, string semester, int? year)
         {
             if (dept == null || courseNumber == null || semester == null || year == null)
                 return null;
@@ -169,9 +169,12 @@ namespace LearningObjectives.Controllers
                 .FromSql("SELECT * FROM Courses WHERE Department={0} AND Number={1} AND Semester={2} AND Year={3}",
                 dept, courseNumber, semester, year).FirstOrDefaultAsync();
 
-            if (includeLearningOutcomes)
+            // Load the Learning Outcomes
+            _context.Entry(course).Collection(c => c.LearningOutcomes).Load();
+
+            foreach (LearningOutcomeModel lo in course.LearningOutcomes)
             {
-                _context.Entry(course).Collection(c => c.LearningOutcomes).Load();
+                _context.Entry(lo).Collection(d => d.EvaluationMetrics).Load();
             }
 
             return course;

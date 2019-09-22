@@ -1,4 +1,5 @@
 ﻿using EFGetStarted.AspNetCore.NewDb.Models;
+using LearningObjectives.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,6 @@ namespace LearningObjectives.Data
 
         public DbSet<CourseModel> Courses { get; set; }
         public DbSet<LearningOutcomeModel> LearningOutcomes { get; set; }
+        public DbSet<EvaluationMetricModel> EvaluationMetrics { get; set; }
     }
 }

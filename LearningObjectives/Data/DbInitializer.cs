@@ -1,4 +1,5 @@
 ﻿using EFGetStarted.AspNetCore.NewDb.Models;
+using LearningObjectives.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -47,15 +48,27 @@ namespace LearningObjectives.Data
             // Seed some learning outcomes.
             var learningOutcomes = new LearningOutcomeModel[]
             {
-                new LearningOutcomeModel{CourseModelID=1, Name="Basic Knowledge of HTML/CSS", Description="Students can create basic HTML pages with some CSS styling.  The use of additional tools (i.e. Bootstrap) is not required for this Learning Outcome."},
-                new LearningOutcomeModel{CourseModelID=1, Name="Bootstrap Introduction", Description="Students can supplement HTML pages with Bootstrap components to more quickly design custom pages."},
-                new LearningOutcomeModel{CourseModelID=2, Name="Introdution to C#", Description="Students understand the basics of C#, such as types, if statements, and try-catch blocks.  Most of these concepts will have already been covered in previous courses that used a Java developing environment."},
-                new LearningOutcomeModel{CourseModelID=2, Name="Actions, Functions, and Delegates", Description="Students understand Actions, Functions and Delegates.  They can readily provide examples of when each should be used."},
-                new LearningOutcomeModel{CourseModelID=3, Name="Introduction to C++", Description="Students understand the basics of C++.  This includes types, headr files, and #include statements."}
+                new LearningOutcomeModel{LearningOutcomeModelID=1, CourseModelID=1, Name="Basic HTML/CSS", Description="Students can create basic HTML pages with some CSS styling.  The use of additional tools (i.e. Bootstrap) is not required for this Learning Outcome."},
+                new LearningOutcomeModel{LearningOutcomeModelID=2, CourseModelID=1, Name="Bootstrap Introduction", Description="Students can supplement HTML pages with Bootstrap components to more quickly design custom pages."},
+                new LearningOutcomeModel{LearningOutcomeModelID=3, CourseModelID=2, Name="Introdution to C#", Description="Students understand the basics of C#, such as types, if statements, and try-catch blocks.  Most of these concepts will have already been covered in previous courses that used a Java developing environment."},
+                new LearningOutcomeModel{LearningOutcomeModelID=4, CourseModelID=2, Name="Actions, Functions, and Delegates", Description="Students understand Actions, Functions and Delegates.  They can readily provide examples of when each should be used."},
+                new LearningOutcomeModel{LearningOutcomeModelID=5, CourseModelID=3, Name="Introduction to C++", Description="Students understand the basics of C++.  This includes types, headr files, and #include statements."}
             };
             foreach (LearningOutcomeModel lom in learningOutcomes)
             {
                 context.LearningOutcomes.Add(lom);
+            }
+            context.SaveChanges();
+
+            // Seed some evaluation metrics
+            var evaluationMetrics = new EvaluationMetricModel[]
+            {
+                new EvaluationMetricModel{EvaluationMetricModelID=1, LearningOutcomeModelID=1, Name="Demonstration of HTML and CSS", Description="Students demonstrate their skills by constructing two unique HTML pages. Excellent pages should include concepts shown in lecture as well as some self-taught material.", Complete=true},
+                new EvaluationMetricModel{EvaluationMetricModelID=2, LearningOutcomeModelID=1, Name="Quiz on CSS Theory", Description="Students are quizzed on abstract CSS concepts such as syntax, selectors, and cascading rules.", Complete=false},
+            };
+            foreach (EvaluationMetricModel ev in evaluationMetrics)
+            {
+                context.EvaluationMetrics.Add(ev);
             }
             context.SaveChanges();
         }

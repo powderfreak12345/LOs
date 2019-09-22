@@ -4,21 +4,31 @@
     ViewData["Title"] = "Details";
 }
 
+    <head>
+        <title>Course Overview</title>
+        <meta name="author" content="Jonathan Beutler" />
+        <meta name="description" content="TODO" />
+        <meta name="charset" content="UTF-8" />
+        <meta name="keywords" content="None" />
+        <link rel="stylesheet" type="text/css" href="~/css/Learning_Outcomes.css" />
+    </head>
+
+
 <h2>@Html.DisplayFor(model => model.Number) - @Html.DisplayFor(model => model.Name)</h2>
 
 <div class="bg-info">
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Number)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Number)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Number)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Number)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Description)
@@ -48,19 +58,63 @@
 </div>
 <div>
     <!--The generated code goes here.-->
-    <h3>Learning Objectives:</h3>
-    <dl class="dl-horizontal">
-        @foreach (var item in Model.LearningOutcomes)
+    @foreach (var loItem in Model.LearningOutcomes)
+    {
+        <!--Learning Objective Template-->
+        <h1 class="objective-title">Learning Outcome: @Html.DisplayFor(lo => loItem.Name)</h1>
+        <p>@Html.DisplayFor(lo => loItem.Description)</p>
+
+        <!--Evaluation Metric Template-->
+        foreach (var emItem in loItem.EvaluationMetrics)
         {
-            <dt>
-                @Html.DisplayNameFor(modelitem => item.Description)
-            </dt>
-            <dd>
-                @Html.DisplayFor(modelItem => item.Description)
-            </dd>
+            <div class="item-card">
+                <h2>Evaluation Metric: @Html.DisplayFor(em => emItem.Name)</h2>
+                <p>Description: @Html.DisplayFor(em => emItem.Description)</p>
+                <h3>Assignment Definition</h3>
+                <table class="table table-bordered table-hover file-upload-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Date Uploaded</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <!--Incomplete row.  Has option for uploading something.-->
+                            <td></td>
+                            <td></td>
+                            <td><button>Add</button></td>
+                        </tr>
+                    </tbody>
+                </table>
 
+
+                <h3>Student Work Examples</h3>
+                <table class="table table-bordered table-hover file-upload-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Date Uploaded</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < 3; i++)
+                        {
+                        <tr>
+                            <!--Incomplete row.  Gives option to upload something.-->
+                            <td></td>
+                            <td></td>
+                            <td><button>Upload</button></td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            
+            
         }
-    </dl>
-
-
+    }
 </div>
