@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Views\CourseModels\Details_Old.cshtml">
+    <Content Update="Views\Course\Details_Old.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>

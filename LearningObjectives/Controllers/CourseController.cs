@@ -10,11 +10,11 @@ using LearningObjectives.Data;
 
 namespace LearningObjectives.Controllers
 {
-    public class CourseModelsController : Controller
+    public class CourseController : Controller
     {
         private readonly Db _context;
 
-        public CourseModelsController(Db context)
+        public CourseController(Db context)
         {
             _context = context;
         }
@@ -71,7 +71,7 @@ namespace LearningObjectives.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Number,Name,Description,Department,Year,Semester")] CourseModel courseModel)
+        public async Task<IActionResult> Create([Bind("ID,Number,Name,Description,Department,Year,Semester")] Course courseModel)
         {
             if (ModelState.IsValid)
             {
@@ -99,9 +99,9 @@ namespace LearningObjectives.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Number,Name,Description,Department,Year,Semester")] CourseModel courseModel)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Number,Name,Description,Department,Year,Semester")] Course courseModel)
         {
-            if (id != courseModel.CourseModelID)
+            if (id != courseModel.CourseID)
             {
                 return NotFound();
             }
@@ -115,7 +115,7 @@ namespace LearningObjectives.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CourseModelExists(courseModel.CourseModelID))
+                    if (!CourseModelExists(courseModel.CourseID))
                     {
                         return NotFound();
                     }
@@ -156,10 +156,10 @@ namespace LearningObjectives.Controllers
 
         private bool CourseModelExists(int id)
         {
-            return _context.Courses.Any(e => e.CourseModelID == id);
+            return _context.Courses.Any(e => e.CourseID == id);
         }
 
-        private async Task<CourseModel> RetrieveCourseModel(string dept, int? courseNumber, string semester, int? year)
+        private async Task<Course> RetrieveCourseModel(string dept, int? courseNumber, string semester, int? year)
         {
             if (dept == null || courseNumber == null || semester == null || year == null)
                 return null;
@@ -172,7 +172,7 @@ namespace LearningObjectives.Controllers
             // Load the Learning Outcomes
             _context.Entry(course).Collection(c => c.LearningOutcomes).Load();
 
-            foreach (LearningOutcomeModel lo in course.LearningOutcomes)
+            foreach (LearningOutcome lo in course.LearningOutcomes)
             {
                 _context.Entry(lo).Collection(d => d.EvaluationMetrics).Load();
             }

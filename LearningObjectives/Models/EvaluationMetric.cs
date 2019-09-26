@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace LearningObjectives.Models
 {
-    public class EvaluationMetricModel
+    public class EvaluationMetric
     {
-        public EvaluationMetricModel()
+        public EvaluationMetric()
         {
 
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int EvaluationMetricModelID { get; set; }
+        public int EvaluationMetricID { get; set; }
 
         // The name for an evaluation metric
         public string Name { get; set; }
@@ -26,10 +26,10 @@ namespace LearningObjectives.Models
         // Used to determine if the evaluation metric is completed or not.
         public bool Complete { get; set; }
 
-        public LearningOutcomeModel LearningOutcome { get; set; }
+        public LearningOutcome LearningOutcome { get; set; }
 
         // The foreign key linking this evaluation metric to specific learning outcome
-        public int LearningOutcomeModelID { get; set; }
+        public int LearningOutcomeID { get; set; }
 
     }
 }
