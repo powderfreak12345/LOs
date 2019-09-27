@@ -38,34 +38,8 @@
                     <li><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a class="nav-link" asp-area="" asp-controller="Course" asp-action="Index">Courses</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="LayoutExperiments">Layout Experiments</a></li>
-                </ul>
-                <!--The single navbar link along the right side of the navbar-->
-                <ul class="nav navbar-nav" style="float: right;">
-                    <li class="dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" asp-area="" asp-controller="Home" asp-action="Index" style="background-color: black">
-                            <div class="container" style="width: 170px">
-                                <div class="row">
-                                    <div class="col-sm-9">
-                                        <nobr>John Smith</nobr>
-                                        <nobr>Department Chair</nobr>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <img class="img-circle" src="~/images/220px-User_icon_2.svg.png" style="width: 25px; background-color: blue;" />
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
-                            <!--<nobr>Department Chair</nobr>
-                            <img class="img-circle" src="~/images/220px-User_icon_2.svg.png" style="width: 25px; background-color: blue;" />-->
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="UnimplementedPage">User Preferences</a>
-                            <div class="nav-divider"></div>
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="UnimplementedPage">Logout</a>
-                        </div>
-                    </li>
-                </ul>
+                </ul>                
+                <partial name="_LoginPartial" />
             </div>
         </div>
     </nav>

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EFGetStarted.AspNetCore.NewDb.Models;
 using LearningObjectives.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LearningObjectives.Controllers
 {
+    [Authorize]
     public class CourseController : Controller
     {
         private readonly Db _context;
@@ -18,8 +20,9 @@ namespace LearningObjectives.Controllers
         {
             _context = context;
         }
-
+                
         // GET: CourseModels
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Courses.ToListAsync());
