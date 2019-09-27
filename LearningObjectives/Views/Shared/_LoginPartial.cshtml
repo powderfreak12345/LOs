@@ -2,12 +2,48 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+
 @if (SignInManager.IsSignedIn(User))
 {
-    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+    // Determine the user's roles
+    List<string> userRoles = new List<string>();
+
+    if (User.Claims.Where(o => o.Value == "Instructor").Count() > 0)
+    {
+        userRoles.Add("Instructor");
+    }
+    else if (User.Claims.Where(o => o.Value == "Chair").Count() > 0)
+    {
+        userRoles.Add("Chair");
+    }
+    else if (User.Claims.Where(o => o.Value == "Admin").Count() > 0)
+    {
+        userRoles.Add("Admin");
+    }
+
+    string commaSeparatedRoles;
+    if (userRoles.Count() == 0)
+    {
+        commaSeparatedRoles = "None";
+    }
+    else
+    {
+        commaSeparatedRoles = "";
+        foreach (string role in userRoles)
+        {
+            commaSeparatedRoles = commaSeparatedRoles + role + ", ";
+        }
+        // Trim off last comma and space
+        commaSeparatedRoles = commaSeparatedRoles.Substring(0, commaSeparatedRoles.Length - 2);
+    }
+
+    ViewData["AllRoles"] = commaSeparatedRoles;
+
+
+    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="~/Home/Index" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Welcome @UserManager.GetUserName(User)!  <i>(Roles: @ViewData["AllRoles"])</i></a>
             </li>
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
@@ -17,9 +53,9 @@
 }
 else
 {
-<ul class="nav navbar-nav navbar-right">
-    <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-    <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
-    @*<li><img class="img-circle" src="~/images/220px-User_icon_2.svg.png" style="width: 25px; background-color: blue;" /></li>*@
-</ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+        <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+        @*<li><img class="img-circle" src="~/images/220px-User_icon_2.svg.png" style="width: 25px; background-color: blue;" /></li>*@
+    </ul>
 }

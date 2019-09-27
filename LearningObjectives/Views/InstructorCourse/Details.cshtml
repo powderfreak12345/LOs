@@ -4,14 +4,14 @@
     ViewData["Title"] = "Details";
 }
 
-    <head>
-        <title>Course Overview</title>
-        <meta name="author" content="Jonathan Beutler" />
-        <meta name="description" content="TODO" />
-        <meta name="charset" content="UTF-8" />
-        <meta name="keywords" content="None" />
-        <link rel="stylesheet" type="text/css" href="~/css/Learning_Outcomes.css" />
-    </head>
+<head>
+    <title>Course Overview</title>
+    <meta name="author" content="Jonathan Beutler" />
+    <meta name="description" content="TODO" />
+    <meta name="charset" content="UTF-8" />
+    <meta name="keywords" content="None" />
+    <link rel="stylesheet" type="text/css" href="~/css/Learning_Outcomes.css" />
+</head>
 
 
 <h2>@Html.DisplayFor(model => model.Number) - @Html.DisplayFor(model => model.Name)</h2>
@@ -57,12 +57,20 @@
     </dl>
 </div>
 <div>
+    @{int loNumber = 1;}
     <!--The generated code goes here.-->
     @foreach (var loItem in Model.LearningOutcomes)
     {
         <!--Learning Objective Template-->
-        <h1 class="objective-title">Learning Outcome: @Html.DisplayFor(lo => loItem.Name)</h1>
-        <p>@Html.DisplayFor(lo => loItem.Description)</p>
+        <h1 class="objective-title">@loNumber)  @Html.DisplayFor(lo => loItem.Description)</h1>
+        @if (loItem.EvaluationMetrics.Count() == 0)
+        {
+            <div class="item-card">
+                <h2>No Evaluation Metrics</h2>
+                <button>Create New</button>
+            </div>
+            loNumber++;
+        }
 
         <!--Evaluation Metric Template-->
         foreach (var emItem in loItem.EvaluationMetrics)
@@ -102,19 +110,19 @@
                     <tbody>
                         @for (int i = 0; i < 3; i++)
                         {
-                        <tr>
-                            <!--Incomplete row.  Gives option to upload something.-->
-                            <td></td>
-                            <td></td>
-                            <td><button>Upload</button></td>
-                        </tr>
+                            <tr>
+                                <!--Incomplete row.  Gives option to upload something.-->
+                                <td></td>
+                                <td></td>
+                                <td><button>Upload</button></td>
+                            </tr>
                         }
                     </tbody>
                 </table>
 
             </div>
-            
-            
+
+
         }
     }
 </div>

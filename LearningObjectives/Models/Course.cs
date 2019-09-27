@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using LearningObjectives.Models;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace EFGetStarted.AspNetCore.NewDb.Models
 {
@@ -12,7 +13,7 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
     {
         // The primary key for identifying each unique course.
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int CourseID { get; set; }
+        public int CourseID { get; set; }        
 
         // The course number.  Ex.  3500, 3505, 4540
         public int Number { get; set; }
@@ -31,6 +32,8 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
 
         // The semester the course is being taught.  Ex: 'Spring', 'Summer', 'Fall'
         public string Semester { get; set; }
+
+        public string InstructorID { get; set; }
 
         // A course has a one-to-many relationship with LearningOutcomes
         public virtual ICollection<LearningOutcome> LearningOutcomes { get; set; }

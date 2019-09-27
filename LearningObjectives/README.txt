@@ -15,6 +15,9 @@ time to get a nicer Razor page working.  It would have been much more feasible i
 readings necessary to complete this assignment had been available at the time when the assignment
 was released.
 
+Made instructor and chair kind of similar.  They share controllers because the chair is basically
+a professor in that they have access to all of the courses.
+
 Improvements: Relocate the department chair overview to the main home page.  Add databases and 
 seed them.
 

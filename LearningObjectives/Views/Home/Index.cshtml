@@ -21,17 +21,21 @@
     <h1>Learning Outcomes Tracker</h1>
     <h2>School of Computing</h2>
 </div>
+<h2>Testing Links:</h2>
 <div class="row">
     <div class="col-md-4">
-        <h2>Sub-menu #1</h2>
-        <p>Info here.</p>
+        <h3>Admin</h3>
+        <p><a asp-controller="AdminCourse" asp-action="Index">View/Update Courses</a></p>
+        <p><a asp-controller="AdminLearningOutcome" asp-action="Index">View/Update Learning Outcomes</a></p>
+        <p><a>View/Update User Permissions</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Sub-menu #2</h2>
-        <p>Info here.</p>
+        <h3>Instructors</h3>
+        <p><a asp-controller="InstructorCourse" asp-action="Index">See My Courses</a></p>
+        <p><a asp-controller="InstructorCourse" asp-action="Details" asp-route-dept="School of Computing" asp-route-courseNumber="4540" asp-route-semester="Spring" asp-route-year="2020">Professor Jim's 4540 Course</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Sub-menu #3</h2>
-        <p>Info here.</p>
+        <h3>Department Chair</h3>
+        <p><a asp-controller="ChairCourse" asp-action="Index">Overview of Program</a></p>
     </div>
 </div>

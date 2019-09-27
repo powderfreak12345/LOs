@@ -1,4 +1,23 @@
-﻿f<!DOCTYPE html>
+﻿@{
+    List<string> userRoles = new List<string>();
+
+    // Determine the user's roles
+    if (User.Claims.Where(o => o.Value == "Instructor").Count() > 0)
+    {
+        userRoles.Add("Instructor");
+    }
+    else if (User.Claims.Where(o => o.Value == "Chair").Count() > 0)
+    {
+        userRoles.Add("Chair");
+    }
+    else if (User.Claims.Where(o => o.Value == "Admin").Count() > 0)
+    {
+        userRoles.Add("Admin");
+    }
+}
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -36,9 +55,19 @@
                 <!--The navbar links along the left side of the navbar-->
                 <ul class="nav navbar-nav">
                     <li><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a class="nav-link" asp-area="" asp-controller="Course" asp-action="Index">Courses</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="LayoutExperiments">Layout Experiments</a></li>
-                </ul>                
+                    @if (userRoles.Any(x => x.Equals("Instructor")))
+                    {
+                        <li><a class="nav-link" asp-area="" asp-controller="Course" asp-action="Index">My Courses</a></li>
+                    }
+                    @if (userRoles.Any(x => x.Equals("Chair")))
+                    {
+                        <li><a class="nav-link" asp-area="" asp-controller="ChairCourse" asp-action="Index">Department Chair</a></li>
+                    }
+                    @if (userRoles.Any(x => x.Equals("Admin")))
+                    {
+                        <li><a class="nav-link" asp-area="" asp-controller="AdminCourse" asp-action="Index">Administrator</a></li>
+                    }
+                </ul>
                 <partial name="_LoginPartial" />
             </div>
         </div>

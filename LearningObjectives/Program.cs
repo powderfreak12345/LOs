@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using LearningObjectives.Data;
+using LearningObjectives.Models;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,13 +24,16 @@ namespace LearningObjectives
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<Db>();
-                    DbInitializer.Initialize(context);
+                    var coursesContext = services.GetRequiredService<Db>();
+                    DbInitializer.Initialize(coursesContext);
+                    var usersContext = services.GetRequiredService<UsersDB>();
+                    UsersDBInitializer.InitializeAsync(usersContext, services).Wait();
                 }
                 catch (Exception ex)
                 {
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred while seeding the database.");
+                    throw (ex); // Throw the exception, so we will be alerted if/when there's a problem seeding.
                 }
             }
 

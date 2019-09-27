@@ -20,6 +20,7 @@ namespace LearningObjectives.Areas.Identity
                         context.Configuration.GetConnectionString("UsersDBConnection")));
 
                 services.AddDefaultIdentity<IdentityUser>()
+                    .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<UsersDB>();
             });
         }

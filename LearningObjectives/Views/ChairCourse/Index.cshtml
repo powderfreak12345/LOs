@@ -1,0 +1,74 @@
+﻿@model IEnumerable<EFGetStarted.AspNetCore.NewDb.Models.Course>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Department Overview - All Courses</h2>
+
+<!--Index table giving an overview of courses and their status.-->
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Semester)
+            </th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            // The progress of a course is computed from the number of LOs that contain evaluation metrics
+            int losComplete = 0;
+            int losCount = 0;
+            foreach (var lo in item.LearningOutcomes)
+            {
+                losCount++;
+                if (lo.EvaluationMetrics.Count() > 1)
+                {
+                    losComplete++;
+                }
+            }
+            ViewData["percentCompleted"] = (losComplete * 100) / losCount;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Semester)
+                </td>
+                <td>
+                    <div class="progress examples-progress-bar">
+                        <div class="progress-bar" style="width:@ViewData["percentCompleted"]%;"></div>
+                    </div>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-dept="@item.Department" asp-route-courseNumber="@item.Number" asp-route-semester="@item.Semester" asp-route-year="@item.Year">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

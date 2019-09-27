@@ -2,9 +2,11 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>All Courses</h2>
+<h4>(Admin)</h4>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -29,6 +31,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Semester)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InstructorID)
             </th>
             <th></th>
         </tr>
@@ -55,9 +60,12 @@
                 @Html.DisplayFor(modelItem => item.Semester)
             </td>
             <td>
-                <a asp-action="Edit"    asp-route-dept="@item.Department" asp-route-courseNumber="@item.Number" asp-route-semester="@item.Semester" asp-route-year="@item.Year">Edit</a>
-                <a asp-action="Details" asp-route-dept="@item.Department" asp-route-courseNumber="@item.Number" asp-route-semester="@item.Semester" asp-route-year="@item.Year">Details</a> |
-                <a asp-action="Delete"  asp-route-dept="@item.Department" asp-route-courseNumber="@item.Number" asp-route-semester="@item.Semester" asp-route-year="@item.Year">Delete</a>
+                @Html.DisplayFor(modelItem => item.InstructorID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CourseID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CourseID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CourseID">Delete</a>
             </td>
         </tr>
 }
