@@ -1,41 +1,63 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Admin Course Change Page</h2>
+<h2>Admin Roles Page</h2>
 
-<table class="table">
+<table class="table table-striped table-bordered">
     <thead>
         <tr>
             <th>
-                Col 1
+                <b>User Email</b>
             </th>
-            <th>
-                Col 2
+            <th class="text-center">
+                <b>Instructor</b>
             </th>
-            <th>
-                Col 3
+            <th class="text-center">
+                <b>Chair</b>
             </th>
-            <th>
-                Col 4
+            <th class="text-center">
+                <b>Admin</b>
             </th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>
-                
-            </td>
-            <td>
-                
-            </td>
-            <td>
-                
-            </td>
-            <td>
-                
-            </td>
-        </tr>
+        @foreach (IdentityUser a in UserManager.Users)
+        {
+            string userID = a.Id;
+            var userRoles = await UserManager.GetRolesAsync(a);
+
+
+            ViewData["IsInstructor"] = userRoles.Where(o => o.Equals("Instructor")).Count() > 0;
+            ViewData["IsChair"] = userRoles.Where(o => o.Equals("Chair")).Count() > 0;
+            ViewData["IsAdmin"] = userRoles.Where(o => o.Equals("Admin")).Count() > 0;
+            ViewData["UserEmail"] = a.UserName;
+            <tr>
+                <td>
+                    <p>@ViewData["UserEmail"]</p>
+                </td>
+                <td class="text-center">
+                    <input class="form-check-input" type="checkbox" checked="@ViewData["IsInstructor"]">
+                </td>
+                <td class="text-center">
+                    <input class="form-check-input" type="checkbox" checked="@ViewData["IsChair"]">
+                </td>
+                <td class="text-center">
+                    <input class="form-check-input" type="checkbox" checked="@ViewData["IsAdmin"]">
+                </td>
+            </tr>
+
+
+
+
+        }
+
+
+
     </tbody>
 </table>

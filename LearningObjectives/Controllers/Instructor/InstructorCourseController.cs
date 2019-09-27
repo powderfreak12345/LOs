@@ -54,18 +54,14 @@ namespace LearningObjectives.Controllers.Instructor
         //  This is how the parameters are passed to the controller
         public async Task<IActionResult> Details(string dept, int courseNumber, string semester, int year)
         {
+            string instructorId = User.Claims.First().Value;
+
             // Try to retrieve the course from database.  Sanitize inputs.
-            var courseModel = await RetrieveCourseModel(dept, courseNumber, semester, year);
+            var courseModel = await RetrieveCourseModel(dept, courseNumber, semester, year, instructorId);
 
             if (courseModel == null)
             {
                 // Return the error page here. TODO: Make a better error page explaining the error
-                return NotFound();
-            }
-
-            string instructorId = User.Claims.First().Value;
-            if (!instructorId.Equals(courseModel.InstructorID))
-            {
                 return NotFound();
             }
 
@@ -77,15 +73,15 @@ namespace LearningObjectives.Controllers.Instructor
             return _context.Courses.Any(e => e.CourseID == id);
         }
 
-        private async Task<Course> RetrieveCourseModel(string dept, int? courseNumber, string semester, int? year)
+        private async Task<Course> RetrieveCourseModel(string dept, int? courseNumber, string semester, int? year, string instructorID)
         {
             if (dept == null || courseNumber == null || semester == null || year == null)
                 return null;
 
             // Try to retrieve the course from database.  Sanitize inputs.
             var course = await _context.Courses
-                .FromSql("SELECT * FROM Courses WHERE Department={0} AND Number={1} AND Semester={2} AND Year={3}",
-                dept, courseNumber, semester, year).FirstOrDefaultAsync();
+                .FromSql("SELECT * FROM Courses WHERE Department={0} AND Number={1} AND Semester={2} AND Year={3} AND InstructorID={4}",
+                dept, courseNumber, semester, year, instructorID).FirstOrDefaultAsync();
 
             if (course == null)
             {

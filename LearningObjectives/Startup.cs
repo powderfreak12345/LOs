@@ -62,6 +62,9 @@ namespace LearningObjectives
             app.UseAuthentication();
             app.UseCookiePolicy();
 
+            app.UseStatusCodePages();
+            app.UseStatusCodePagesWithReExecute("/Status{0}");
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

@@ -66,7 +66,7 @@
                     </div>
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-dept="@item.Department" asp-route-courseNumber="@item.Number" asp-route-semester="@item.Semester" asp-route-year="@item.Year">Details</a>
+                    <a asp-controller="InstructorCourse" asp-action="Details" asp-route-dept="@item.Department" asp-route-courseNumber="@item.Number" asp-route-semester="@item.Semester" asp-route-year="@item.Year">Details</a>
                 </td>
             </tr>
         }
