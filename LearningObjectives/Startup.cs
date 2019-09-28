@@ -12,6 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using EFGetStarted.AspNetCore.NewDb.Models;
 using Microsoft.EntityFrameworkCore;
 using LearningObjectives.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
+using LearningObjectives.Models;
 
 namespace LearningObjectives
 {
@@ -40,7 +43,7 @@ namespace LearningObjectives
             
             services.AddDbContext<Db>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            
             _password = Configuration["UserPasswordSecret"];
         }
 

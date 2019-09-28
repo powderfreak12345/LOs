@@ -72,7 +72,7 @@ namespace LearningObjectives.Data
         // Helper method adds an IdentityUser with the specified role.  
         private static async Task AddUserWithRole(UserManager<IdentityUser> userManager, int id, string email, string password, string role)
         {
-            var user = new IdentityUser { Id = id.ToString(), UserName = email, Email = email };
+            var user = new IdentityUser { Id = id.ToString(), UserName = email, Email = email, EmailConfirmed=true };
 
             var createUser = await userManager.CreateAsync(user, password);
             if (createUser.Succeeded)
