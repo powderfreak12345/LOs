@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LearningObjectives.Migrations
 {
     [DbContext(typeof(Db))]
-    [Migration("20190926233634_InitialCreateCoursesDB")]
-    partial class InitialCreateCoursesDB
+    [Migration("20191017035129_AddCourseNote")]
+    partial class AddCourseNote
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -27,6 +27,8 @@ namespace LearningObjectives.Migrations
                     b.Property<string>("Department");
 
                     b.Property<string>("Description");
+
+                    b.Property<string>("InstructorID");
 
                     b.Property<string>("Name");
 
@@ -77,6 +79,26 @@ namespace LearningObjectives.Migrations
                     b.ToTable("EvaluationMetrics");
                 });
 
+            modelBuilder.Entity("LearningObjectives.Models.LearningOutcome_Note", b =>
+                {
+                    b.Property<int>("LearningOutcome_NoteID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("LastEditByChair");
+
+                    b.Property<int>("LearningOutcomeID");
+
+                    b.Property<string>("Note");
+
+                    b.HasKey("LearningOutcome_NoteID");
+
+                    b.HasIndex("LearningOutcomeID")
+                        .IsUnique();
+
+                    b.ToTable("LearningOutcome_Notes");
+                });
+
             modelBuilder.Entity("EFGetStarted.AspNetCore.NewDb.Models.LearningOutcome", b =>
                 {
                     b.HasOne("EFGetStarted.AspNetCore.NewDb.Models.Course", "Course")
@@ -90,6 +112,14 @@ namespace LearningObjectives.Migrations
                     b.HasOne("EFGetStarted.AspNetCore.NewDb.Models.LearningOutcome", "LearningOutcome")
                         .WithMany("EvaluationMetrics")
                         .HasForeignKey("LearningOutcomeID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("LearningObjectives.Models.LearningOutcome_Note", b =>
+                {
+                    b.HasOne("EFGetStarted.AspNetCore.NewDb.Models.LearningOutcome", "LearningOutcome")
+                        .WithOne("Note")
+                        .HasForeignKey("LearningObjectives.Models.LearningOutcome_Note", "LearningOutcomeID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

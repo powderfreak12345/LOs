@@ -56,73 +56,123 @@
         </dd>
     </dl>
 </div>
+
+<!--Course Note-->
+<div>
+    <p>Notes (optional):</p>
+    @{ // Null check for the note
+        var courseNote = "";
+        if (Model.Note != null && Model.Note.Note != null)
+        {
+            courseNote = Model.Note.Note;
+        }
+        // Come up with a name for the text area's id
+        int courseID = Model.CourseID;
+        string courseNoteTextAreaID = "courseNoteTextArea_" + courseID;
+    }
+    <form asp-action="ChangeCourseNote" method="POST" onsubmit="submit_course_note(event, @courseNoteTextAreaID, @courseID)">
+        <textarea id=@courseNoteTextAreaID name=@courseNoteTextAreaID rows="5" cols="50">@courseNote</textarea>
+        <br />
+        <input type="submit" value="Submit note">
+    </form>
+</div>
+
+
 <div>
     @{int loNumber = 1;}
     <!--The generated code goes here.-->
     @foreach (var loItem in Model.LearningOutcomes)
     {
-        <!--Learning Objective Template-->
-        <h1 class="objective-title">@loNumber)  @Html.DisplayFor(lo => loItem.Description)</h1>
-        @if (loItem.EvaluationMetrics.Count() == 0)
-        {
-            <div class="item-card">
-                <h2>No Evaluation Metrics</h2>
-                <button>Create New</button>
+        <div class="learingOutcomeCard">
+            <!--Learning Objective Template-->
+            <h1 class="objective-title">@loNumber)  @Html.DisplayFor(lo => loItem.Description)</h1>
+
+            <!--Learning Outcome Note-->
+            <div>
+                <p>Notes (optional):</p>
+                @{ // Null check for the note
+                    var note = "";
+                    if (loItem.Note != null && loItem.Note.Note != null)
+                    {
+                        note = loItem.Note.Note;
+                    }
+                    // Come up with a name for the text area's id
+                    int learningOutcomeID = loItem.LearningOutcomeID;
+                    string textAreaID = "textArea_" + learningOutcomeID;
+                }
+                <form asp-action="ChangeLearningOutcomeNote" method="POST" onsubmit="submit_learning_outcome_note(event, @textAreaID, @learningOutcomeID)">
+                    <textarea id=@textAreaID name=@textAreaID rows="5" cols="50">@note</textarea>
+                    <br />
+                    <input type="submit" value="Submit note">
+                </form>
             </div>
-            loNumber++;
-        }
-
-        <!--Evaluation Metric Template-->
-        foreach (var emItem in loItem.EvaluationMetrics)
-        {
-            <div class="item-card">
-                <h2>Evaluation Metric: @Html.DisplayFor(em => emItem.Name)</h2>
-                <p>Description: @Html.DisplayFor(em => emItem.Description)</p>
-                <h3>Assignment Definition</h3>
-                <table class="table table-bordered table-hover file-upload-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Date Uploaded</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <!--Incomplete row.  Has option for uploading something.-->
-                            <td></td>
-                            <td></td>
-                            <td><button>Add</button></td>
-                        </tr>
-                    </tbody>
-                </table>
 
 
-                <h3>Student Work Examples</h3>
-                <table class="table table-bordered table-hover file-upload-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Date Uploaded</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (int i = 0; i < 3; i++)
-                        {
+            <!--If there are no evaluation metrics, display that to the user-->
+            @if (loItem.EvaluationMetrics.Count() == 0)
+            {
+                <div class="evaluationMetricCard">
+                    <h2>No Evaluation Metrics</h2>
+                    <button>Create New</button>
+                </div>
+                loNumber++;
+            }
+            <!--Evaluation Metric Template for any existing evaluation metrics-->
+            @foreach (var emItem in loItem.EvaluationMetrics)
+            {
+                <div class="evaluationMetricCard">
+                    <h2>Evaluation Metric: @Html.DisplayFor(em => emItem.Name)</h2>
+                    <p>Description: @Html.DisplayFor(em => emItem.Description)</p>
+                    <h3>Assignment Definition</h3>
+                    <table class="table table-bordered table-hover file-upload-table">
+                        <thead>
                             <tr>
-                                <!--Incomplete row.  Gives option to upload something.-->
-                                <td></td>
-                                <td></td>
-                                <td><button>Upload</button></td>
+                                <th>Name</th>
+                                <th>Date Uploaded</th>
+                                <th></th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <!--Incomplete row.  Has option for uploading something.-->
+                                <td></td>
+                                <td></td>
+                                <td><button>Add</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-            </div>
 
-
-        }
+                    <h3>Student Work Examples</h3>
+                    <table class="table table-bordered table-hover file-upload-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Date Uploaded</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < 3; i++)
+                            {
+                                <tr>
+                                    <!--Incomplete row.  Gives option to upload something.-->
+                                    <td></td>
+                                    <td></td>
+                                    <td><button>Upload</button></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
     }
 </div>
+
+@*The scripts used for this web page*@
+@section Scripts
+{
+    <script src="~/js/submit_note.js"></script>
+}
+

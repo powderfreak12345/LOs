@@ -15,7 +15,9 @@ namespace LearningObjectives.Data
         }
 
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Course_Note> Course_Notes { get; set; }
         public DbSet<LearningOutcome> LearningOutcomes { get; set; }
+        public DbSet<LearningOutcome_Note> LearningOutcome_Notes { get; set; }
         public DbSet<EvaluationMetric> EvaluationMetrics { get; set; }
     }
 }

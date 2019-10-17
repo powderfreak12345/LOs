@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using EFGetStarted.AspNetCore.NewDb.Models;
 using LearningObjectives.Data;
 using Microsoft.AspNetCore.Authorization;
+using LearningObjectives.Models;
 
 namespace LearningObjectives.Controllers.Instructor
 {
@@ -68,6 +69,77 @@ namespace LearningObjectives.Controllers.Instructor
             return View(courseModel);
         }
 
+        // Called by an AJAX call to change the note associated with a LearningOutcome
+        [HttpPost]
+        public JsonResult ChangeCourseNote(string note, int courseID)
+        {
+            var courseNoteToUpdate = _context.Course_Notes.FirstOrDefault(s => s.CourseID == courseID);
+
+            if (courseNoteToUpdate == null)
+            {
+                // If a note does not already exist for this learning outcome, create one
+                Course_Note newNote = new Course_Note()
+                { CourseID = courseID, Note = note };
+                _context.Course_Notes.Add(newNote);
+                _context.SaveChanges();
+                return Json(new
+                {
+                    success = true,
+                    note = note,
+                    learningOutcomeID = courseID
+                });
+            }
+            else
+            {
+                courseNoteToUpdate.Note = note;
+                _context.SaveChanges();
+                return Json(new
+                {
+                    success = true,
+                    note = note,
+                    learningOutcomeID = courseID
+                });
+            }
+
+
+        }
+
+
+        // Called by an AJAX call to change the note associated with a LearningOutcome
+        [HttpPost]
+        public JsonResult ChangeLearningOutcomeNote(string note, int learningOutcomeID)
+        {
+            var learningOutcomeNoteToUpdate = _context.LearningOutcome_Notes.FirstOrDefault(s => s.LearningOutcomeID == learningOutcomeID);
+
+            if (learningOutcomeNoteToUpdate == null)
+            {
+                // If a note does not already exist for this learning outcome, create one
+                LearningOutcome_Note newNote = new LearningOutcome_Note()
+                { LearningOutcomeID = learningOutcomeID, Note = note };
+                _context.LearningOutcome_Notes.Add(newNote);
+                _context.SaveChanges();
+                return Json(new
+                {
+                    success = true,
+                    note = note,
+                    learningOutcomeID = learningOutcomeID
+                });
+            }
+            else
+            {
+                learningOutcomeNoteToUpdate.Note = note;
+                _context.SaveChanges();
+                return Json(new
+                {
+                    success = true,
+                    note = note,
+                    learningOutcomeID = learningOutcomeID
+                });
+            }
+
+            
+        }
+
         private bool CourseModelExists(int id)
         {
             return _context.Courses.Any(e => e.CourseID == id);
@@ -80,22 +152,14 @@ namespace LearningObjectives.Controllers.Instructor
 
             // Try to retrieve the course from database.  Sanitize inputs.
             var course = await _context.Courses
+                .Include(c => c.LearningOutcomes)
+                    .ThenInclude(lo => lo.EvaluationMetrics)
+                .Include(c => c.LearningOutcomes)
+                    .ThenInclude(lo => lo.Note)
+                .Include(c => c.Note)
                 .FromSql("SELECT * FROM Courses WHERE Department={0} AND Number={1} AND Semester={2} AND Year={3} AND InstructorID={4}",
-                dept, courseNumber, semester, year, instructorID).FirstOrDefaultAsync();
-
-            if (course == null)
-            {
-                return null;
-            }
-
-            // Load the Learning Outcomes
-            _context.Entry(course).Collection(c => c.LearningOutcomes).Load();
-
-            // Load the Evaluation Metrics
-            foreach (LearningOutcome lo in course.LearningOutcomes)
-            {
-                _context.Entry(lo).Collection(d => d.EvaluationMetrics).Load();
-            }
+                dept, courseNumber, semester, year, instructorID)
+                .FirstOrDefaultAsync();
 
             return course;
         }

@@ -4,14 +4,16 @@ using LearningObjectives.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LearningObjectives.Migrations
 {
     [DbContext(typeof(Db))]
-    partial class DbModelSnapshot : ModelSnapshot
+    [Migration("20191017040110_AddCourseNoteToCourse")]
+    partial class AddCourseNoteToCourse
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,7 +80,7 @@ namespace LearningObjectives.Migrations
                     b.HasIndex("CourseID")
                         .IsUnique();
 
-                    b.ToTable("Course_Notes");
+                    b.ToTable("Course_Note");
                 });
 
             modelBuilder.Entity("LearningObjectives.Models.EvaluationMetric", b =>

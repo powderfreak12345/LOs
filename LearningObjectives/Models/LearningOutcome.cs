@@ -27,6 +27,8 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
         // The course that the LO belongs to
         public Course Course { get; set; }
 
+        public LearningOutcome_Note Note { get; set; }
+
         // A course has a one-to-many relationship with LearningOutcomes
         public virtual ICollection<EvaluationMetric> EvaluationMetrics { get; set; }
     }

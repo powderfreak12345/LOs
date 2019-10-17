@@ -35,6 +35,8 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
 
         public string InstructorID { get; set; }
 
+        public Course_Note Note { get; set; }
+
         // A course has a one-to-many relationship with LearningOutcomes
         public virtual ICollection<LearningOutcome> LearningOutcomes { get; set; }
     }

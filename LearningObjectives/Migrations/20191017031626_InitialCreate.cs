@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LearningObjectives.Migrations
 {
-    public partial class InitialCreateCoursesDB : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +17,8 @@ namespace LearningObjectives.Migrations
                     Description = table.Column<string>(nullable: true),
                     Department = table.Column<string>(nullable: true),
                     Year = table.Column<int>(nullable: false),
-                    Semester = table.Column<string>(nullable: true)
+                    Semester = table.Column<string>(nullable: true),
+                    InstructorID = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -64,10 +66,37 @@ namespace LearningObjectives.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "LearningOutcome_Notes",
+                columns: table => new
+                {
+                    LearningOutcome_NoteID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Note = table.Column<string>(nullable: true),
+                    LastEditByChair = table.Column<bool>(nullable: false),
+                    LearningOutcomeID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LearningOutcome_Notes", x => x.LearningOutcome_NoteID);
+                    table.ForeignKey(
+                        name: "FK_LearningOutcome_Notes_LearningOutcomes_LearningOutcomeID",
+                        column: x => x.LearningOutcomeID,
+                        principalTable: "LearningOutcomes",
+                        principalColumn: "LearningOutcomeID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_EvaluationMetrics_LearningOutcomeID",
                 table: "EvaluationMetrics",
                 column: "LearningOutcomeID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LearningOutcome_Notes_LearningOutcomeID",
+                table: "LearningOutcome_Notes",
+                column: "LearningOutcomeID",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_LearningOutcomes_CourseID",
@@ -79,6 +108,9 @@ namespace LearningObjectives.Migrations
         {
             migrationBuilder.DropTable(
                 name: "EvaluationMetrics");
+
+            migrationBuilder.DropTable(
+                name: "LearningOutcome_Notes");
 
             migrationBuilder.DropTable(
                 name: "LearningOutcomes");

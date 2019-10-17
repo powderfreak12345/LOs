@@ -57,7 +57,7 @@
                     <li><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     @if (userRoles.Any(x => x.Equals("Instructor")))
                     {
-                        <li><a class="nav-link" asp-area="" asp-controller="Course" asp-action="Index">My Courses</a></li>
+                        <li><a class="nav-link" asp-area="" asp-controller="InstructorCourse" asp-action="Index">My Courses</a></li>
                     }
                     @if (userRoles.Any(x => x.Equals("Chair")))
                     {

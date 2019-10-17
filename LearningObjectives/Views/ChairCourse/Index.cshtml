@@ -43,7 +43,14 @@
                     losComplete++;
                 }
             }
-            ViewData["percentCompleted"] = (losComplete * 100) / losCount;
+            @if (losCount == 0)
+            {
+                ViewData["percentCompleted"] = 0;
+            }
+            else
+            {
+                ViewData["percentCompleted"] = (losComplete * 100) / losCount;
+            }
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Number)

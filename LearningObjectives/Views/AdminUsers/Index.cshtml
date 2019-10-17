@@ -31,6 +31,9 @@
         {
             string userID = a.Id;
             var userRoles = await UserManager.GetRolesAsync(a);
+            string instructorFormID = userID + "_instructor";
+            string chairFormID = userID + "_chair";
+            string adminFormID = userID + "_admin";
 
 
             ViewData["IsInstructor"] = userRoles.Where(o => o.Equals("Instructor")).Count() > 0;
@@ -42,20 +45,39 @@
                     <p>@ViewData["UserEmail"]</p>
                 </td>
                 <td class="text-center">
-                    <input class="form-check-input" type="checkbox" checked="@ViewData["IsInstructor"]">
+                    <input class="form-check-input" type="checkbox" checked="@ViewData["IsInstructor"]" asp-controller="AdminUsersController"
+                           asp-action="ChangeRole" method="POST" onsubmit="submit_role_change(event, userID, 'Instructor')">
                 </td>
                 <td class="text-center">
-                    <input class="form-check-input" type="checkbox" checked="@ViewData["IsChair"]">
+                    <input class="form-check-input" type="checkbox" checked="@ViewData["IsChair"]" asp-controller="AdminUsersController"
+                           asp-action="ChangeRole" method="POST" onsubmit="submit_role_change(event, userID, 'Chair')">
                 </td>
                 <td class="text-center">
-                    <input class="form-check-input" type="checkbox" checked="@ViewData["IsAdmin"]">
+                    <input class="form-check-input" type="checkbox" checked="@ViewData["IsAdmin"]" asp-controller="AdminUsersController"
+                           asp-action="ChangeRole" method="POST" onsubmit="submit_role_change(event, userID, 'Admin')">
                 </td>
             </tr>
-
-
-
-
         }
+
+
+        @*<div>
+            <p>Notes (optional):</p>
+            @{ // Null check for the note
+                var courseNote = "";
+                if (Model.Note != null && Model.Note.Note != null)
+                {
+                    courseNote = Model.Note.Note;
+                }
+                // Come up with a name for the text area's id
+                int courseID = Model.CourseID;
+                string courseNoteTextAreaID = "courseNoteTextArea_" + courseID;
+            }
+            <form asp-action="ChangeCourseNote" method="POST" onsubmit="submit_course_note(event, @courseNoteTextAreaID, @courseID)">
+                <textarea id=@courseNoteTextAreaID name=@courseNoteTextAreaID rows="5" cols="50">@courseNote</textarea>
+                <br />
+                <input type="submit" value="Submit note">
+            </form>
+        </div>*@
 
 
 
